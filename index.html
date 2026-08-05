@@ -250,6 +250,94 @@
     section{ padding:110px 6vw 70px; }
     #contato p{ max-width:28ch; }
   }
+
+  /* ---------- VER MAIS IN CARDS ---------- */
+  .work-card .wf-info::after {
+    content: 'Ver mais ↗';
+    display: block;
+    margin-top: 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: 0.6;
+    transform: translateY(10px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .work-card:hover .wf-info::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(22, 20, 24, 0.85); backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  
+  .modal-content {
+    background: var(--paper); color: var(--ink);
+    width: 90%; max-width: 900px; max-height: 90vh;
+    border-radius: var(--r-lg); overflow-y: auto; overflow-x: hidden;
+    position: relative;
+    transform: translateY(30px) scale(0.98);
+    transition: transform 0.4s var(--ease), background 0.3s, color 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .modal-content.pink { background: var(--pink); color: #fff; }
+  .modal-content.lime { background: var(--lime); color: #fff; }
+  .modal-content.lav { background: var(--lav); color: #fff; }
+
+  .modal-overlay.open .modal-content { transform: translateY(0) scale(1); }
+  
+  .modal-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(0,0,0,0.05); border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: none; z-index: 10;
+    transition: background 0.3s;
+  }
+  .modal-content.pink .modal-close, .modal-content.lime .modal-close, .modal-content.lav .modal-close { background: rgba(255,255,255,0.15); }
+  .modal-close:hover { background: rgba(0,0,0,0.1); }
+  .modal-content.pink .modal-close:hover, .modal-content.lime .modal-close:hover, .modal-content.lav .modal-close:hover { background: rgba(255,255,255,0.25); }
+  
+  .modal-close::before, .modal-close::after {
+    content: ''; position: absolute; width: 20px; height: 2px; background: var(--ink);
+  }
+  .modal-content.pink .modal-close::before, .modal-content.pink .modal-close::after,
+  .modal-content.lime .modal-close::before, .modal-content.lime .modal-close::after,
+  .modal-content.lav .modal-close::before, .modal-content.lav .modal-close::after {
+    background: #fff;
+  }
+  .modal-close::before { transform: rotate(45deg); }
+  .modal-close::after { transform: rotate(-45deg); }
+
+  .modal-img-wrap {
+    width: 100%; background: #e5e1e8;
+    display: flex; justify-content: center; align-items: center;
+    padding: 40px 20px;
+  }
+  .modal-content.pink .modal-img-wrap, .modal-content.lime .modal-img-wrap, .modal-content.lav .modal-img-wrap {
+    background: rgba(0,0,0,0.15);
+  }
+  .modal-img-wrap img {
+    max-width: 100%; height: auto; max-height: 60vh; border-radius: 12px; object-fit: contain;
+  }
+
+  .modal-info { padding: 40px; }
+  .modal-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; opacity: 0.6; margin-bottom: 8px; display: block; }
+  .modal-info h3 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 16px; }
+  .modal-info p { font-size: 1.05rem; line-height: 1.6; color: #4a4552; margin-bottom: 20px; }
+  .modal-content.pink .modal-info p, .modal-content.lime .modal-info p, .modal-content.lav .modal-info p { color: rgba(255,255,255,0.9); }
+  
+  body.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -323,7 +411,7 @@
   </div>
   <div class="works-grid">
 
-    <div class="work-card pink" data-reveal>
+    <div class="work-card pink" data-reveal onclick="openModal('agrocode')">
       <div class="wf-media align-left">
         <img class="wf-thumb" src="AgroCode.png" alt="Print do app AgroCode">
       </div>
@@ -334,8 +422,8 @@
       </div>
     </div>
 
-    <div class="work-card lime" data-reveal>
-      <div class="wf-media align-left">
+    <div class="work-card lime" data-reveal onclick="openModal('uniformes')">
+      <div class="wf-media">
         <img class="wf-thumb" src="DesignGestãodeUniforme.png" alt="Print do site de gestão de uniformes">
       </div>
       <div class="wf-info">
@@ -345,7 +433,7 @@
       </div>
     </div>
 
-    <div class="work-card lav" data-reveal>
+    <div class="work-card lav" data-reveal onclick="openModal('promptcode')">
       <div class="wf-media align-top">
         <img class="wf-thumb" src="promptCode.png" alt="Post do Workshop PromptCode">
       </div>
@@ -356,7 +444,7 @@
       </div>
     </div>
 
-    <div class="work-card lime" data-reveal>
+    <div class="work-card lime" data-reveal onclick="openModal('idvisual')">
       <div class="wf-media">
         <img class="wf-thumb" src="mockups.png" alt="Print da solução AgroHub">
       </div>
@@ -367,7 +455,7 @@
       </div>
     </div>
 
-    <div class="work-card pink" data-reveal>
+    <div class="work-card pink" data-reveal onclick="openModal('jogo')">
       <div class="wf-media">
         <img class="wf-thumb" src="jogo.png" alt="Print do jogo sério de privacidade usável">
       </div>
@@ -378,7 +466,7 @@
       </div>
     </div>
 
-    <div class="work-card lav" data-reveal>
+    <div class="work-card lav" data-reveal onclick="openModal('figma')">
       <div class="wf-media zoom">
         <img class="wf-thumb" src="OficinaFigma.png" alt="Print da Oficina de Figma">
       </div>
@@ -407,7 +495,101 @@
   <footer>© <span id="year"></span> Isabela Stefanuto — Criado com muito café :p.</footer>
 </section>
 
+<!-- ================= MODAL DE PROJETOS ================= -->
+<div class="modal-overlay" id="project-modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar"></button>
+    <div class="modal-img-wrap">
+      <img id="modal-img" src="" alt="">
+    </div>
+    <div class="modal-info">
+      <span class="modal-label" id="modal-label"></span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+</div>
+
 <script>
+  // ---------- modal logic ----------
+  const projectData = {
+    agrocode: {
+      title: "AgroCode",
+      label: "Genius Con 2025",
+      img: "AgroCode.png",
+      colorClass: "pink",
+      desc: "Projeto vencedor do hackathon Genius Con 2025. O AgroCode é um aplicativo focado em inovar a maneira como produtores rurais interagem com o ecossistema tecnológico. Durante o projeto, fui responsável pelo design de interfaces e validação com os usuários."
+    },
+    uniformes: {
+      title: "Gestão de Uniformes",
+      label: "Site para gestão de uniformes de escolas públicas",
+      img: "DesignGestãodeUniforme.png",
+      colorClass: "lime",
+      desc: "Plataforma web projetada para otimizar e organizar a distribuição e o controle de uniformes em escolas públicas. O foco principal foi criar uma interface limpa, acessível e fácil de ser utilizada por funcionários administrativos."
+    },
+    promptcode: {
+      title: "PromptCode",
+      label: "Workshop",
+      img: "promptCode.png",
+      colorClass: "lav",
+      desc: "Materiais de divulgação criados para o Workshop PromptCode, focado no ensino e na popularização de técnicas de Engenharia de Prompt e uso de Inteligências Artificiais Generativas."
+    },
+    idvisual: {
+      title: "Minha ID visual",
+      label: "Minha identidade visual",
+      img: "mockups.png",
+      colorClass: "lime",
+      desc: "Desenvolvimento da minha própria identidade visual como designer e desenvolvedora. Exploração de cores modernas, tipografia marcante e elementos que refletem criatividade e tecnologia."
+    },
+    jogo: {
+      title: "Jogo sério",
+      label: "PIBIT/CNPq",
+      img: "jogo.png",
+      colorClass: "pink",
+      desc: "Desenvolvimento de um jogo sério voltado para o letramento em privacidade usável. O projeto faz parte da minha Iniciação Tecnológica e busca tornar conceitos complexos de privacidade mais acessíveis aos usuários por meio da gamificação."
+    },
+    figma: {
+      title: "Oficina de Figma",
+      label: "PROFCOMP/UENP",
+      img: "OficinaFigma.png",
+      colorClass: "lav",
+      desc: "Condução de uma oficina prática de prototipação no Figma para alunos da UENP. O material cobriu desde o básico das ferramentas até a criação de componentes iterativos e auto-layout."
+    }
+  };
+
+  const modal = document.getElementById('project-modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalLabel = document.getElementById('modal-label');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalContent = document.querySelector('.modal-content');
+
+  function openModal(id) {
+    const data = projectData[id];
+    if(!data) return;
+    
+    modalImg.src = data.img;
+    modalImg.alt = data.title;
+    modalLabel.textContent = data.label;
+    modalTitle.textContent = data.title;
+    modalDesc.textContent = data.desc;
+    
+    modalContent.className = 'modal-content ' + data.colorClass;
+    
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  // fechar modal clicando no background
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeModal();
+  });
+
   // ---------- custom cursor: bezier anchor + lagging handles ----------
   const cursor = document.getElementById('cursor');
   const hd1 = document.getElementById('hd1'), hd2 = document.getElementById('hd2');
