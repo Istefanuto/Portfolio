@@ -196,7 +196,7 @@
   .work-card .wf-media.align-left{ justify-content:flex-start; }
   .work-card .wf-media.align-left .wf-thumb{
   object-position:left center;
-  transform:translateX(-40px);
+  transform:translateX(-1px);
 }
   /* zoom in on this specific thumbnail */
   .work-card .wf-media.zoom .wf-thumb{
@@ -204,6 +204,7 @@
     transform:scale(1.0);
   }
   .work-card:hover .wf-media.zoom .wf-thumb{ transform:scale(1.3); }
+  .work-card:hover .wf-media.align-left .wf-thumb{ transform: translateX(-1px) scale(1.035); }
   .work-card:hover .wf-thumb{ transform: scale(1.035); }
 
   .work-card .wf-info{
@@ -335,11 +336,11 @@
 
     <div class="work-card lime" data-reveal>
       <div class="wf-media align-left">
-        <img class="wf-thumb" src="promptParaEducadores.png" alt="Print do site Prompts para Educadores">
+        <img class="wf-thumb" src="DesignGestãodeUniforme.png" alt="Print do site de gestão de uniformes">
       </div>
       <div class="wf-info">
-        <span class="wf-label">Prompts para Educadores</span>
-        <h3>Prompts p/ educadores</h3>
+        <span class="wf-label">Site para gestão de uniformes de escolas públicas</span>
+        <h3>Gestão de Uniformes</h3>
         <p class="wf-cat">Design de site</p>
       </div>
     </div>
