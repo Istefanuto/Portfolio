@@ -149,6 +149,46 @@
   .tags span:hover{ background:var(--lav-ink); color:var(--lav); }
   #char-sobre{ width:100%; max-width:300px; justify-self:center; height:auto; display:block; }
 
+  /* ---------- HABILIDADES ---------- */
+  #habilidades{ background:#BCDE3F; color:var(--ink); min-height:auto; padding-top:90px; padding-bottom:90px; }
+  #habilidades .frame-label{ color:var(--ink); }
+  .skills-wrapper{ display:grid; grid-template-columns: 1.15fr .85fr; gap:60px; align-items:center; margin-top: 40px; }
+  #habilidades h2{ font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom:30px; }
+  
+  .carousel-wrapper{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .carousel-track{
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 15s linear infinite;
+  }
+  .carousel-track:hover { animation-play-state: paused; }
+  .carousel-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .carousel-item img, .carousel-item svg{
+    width: 52px; height: 52px;
+  }
+  @keyframes scroll{
+    to { transform: translateX(calc(-50% - 30px)); }
+  }
+
+  .tags.dark span{ border-color: var(--ink); color: var(--ink); }
+  .tags.dark span:hover{ background: var(--ink); color: #BCDE3F; }
+
   /* ---------- TRABALHOS ---------- */
   #trabalhos{ background:var(--paper); color:var(--ink); min-height:auto; padding-bottom:120px;}
   #trabalhos .frame-label{ color:var(--ink); position:static; margin-bottom:60px; opacity:.5; }
@@ -241,7 +281,7 @@
   [data-reveal].in{ opacity:1; transform:none; }
 
   @media (max-width: 860px){
-    .hero-grid, .sobre-grid{ grid-template-columns:1fr; }
+    .hero-grid, .sobre-grid, .skills-wrapper{ grid-template-columns:1fr; }
     .char-wrap{ order:-1; max-width:220px; margin:0 auto 20px;}
     .works-grid{ grid-template-columns: 1fr; }
     .work-card{ aspect-ratio: 4/3; }
@@ -371,7 +411,7 @@
         <span>oi, eu sou a</span>
         <span class="accent">istefanutox</span>
       </h1>
-      <p class="hero-tag">Isabela Stefanuto — estudante de Ciência da Computação (UENP) com foco em UX/UI, prototipação e design de interação. Aqui você encontra os projetos que mais gosto de mostrar, do research à interface final.</p>
+      <p class="hero-tag">Estudante de Ciência da Computação (UENP) com foco em UX/UI, prototipação e design de interação. Aqui você encontra os projetos que mais gosto de mostrar, do research à interface final.</p>
       <a href="#trabalhos" class="hero-cta">Ver trabalhos ↓</a>
     </div>
     <div class="char-wrap">
@@ -389,7 +429,7 @@
     <div data-reveal>
       <h2>quem <span class="swash">projeta</span> isso tudo</h2>
       <p>Sou a Isabela — ou <em>istefanutox</em> pros mais chegados. Estudante do último período de Ciência da Computação na UENP, trabalho na fronteira entre design e tecnologia: pesquisa com usuários, prototipação em Figma e desenvolvimento front-end.</p>
-      <p>Minha trajetória passa por duas Iniciações Tecnológicas (PIBIT/UENP e PIBIT/CNPq) com foco em IA Generativa, Engenharia de Prompt e um jogo sério para letramento em privacidade usável — além de projetos premiados em hackathons, como o AgroCode, vencedor da Genius Con 2025.</p>
+      <p>Minha trajetória passa por duas Iniciações Tecnológicas (PIBIT/UENP e PIBIT/CNPq) com foco em IA Generativa, Engenharia de Prompt e um jogo sério para letramento em privacidade usável — além de diversas premiações em hackathons, como Genius Con 2025 e AgroHub.</p>
       <div class="tags">
         <span>UX/UI</span>
         <span>Prototipação</span>
@@ -402,9 +442,41 @@
   </div>
 </section>
 
+<!-- ================= HABILIDADES ================= -->
+<section id="habilidades">
+  <div class="frame-label">Frame 03 — Habilidades</div>
+  <div class="skills-wrapper">
+    <div data-reveal>
+      <h2>minhas <span class="swash">stacks</span></h2>
+      <div class="carousel-wrapper">
+        <div class="carousel-track">
+          <!-- Item Set 1 -->
+          <!-- Item Set 2 (for infinite loop) -->
+          <div class="carousel-item"><img src="https://cdn.simpleicons.org/figma/161418" alt="Figma"><span>Figma</span></div>
+          <div class="carousel-item"><img src="canva.png" alt="Canva"><span>Canva</span></div>
+          <div class="carousel-item"><img src="https://cdn.simpleicons.org/html5/161418" alt="HTML"><span>HTML</span></div>
+          <div class="carousel-item"><img src="css.png" alt="CSS"><span>CSS</span></div>
+          <div class="carousel-item"><img src="https://cdn.simpleicons.org/javascript/161418" alt="JavaScript"><span>JavaScript</span></div>
+          <div class="carousel-item"><img src="IA.png" alt="IA"><span>IA</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div data-reveal>
+      <h2>soft <span class="swash">skills</span></h2>
+      <div class="tags dark">
+        <span>Boa comunicação</span>
+        <span>Trabalho em equipe</span>
+        <span>Escuta ativa</span>
+        <span>Feedback construtivo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= TRABALHOS ================= -->
 <section id="trabalhos">
-  <div class="frame-label">Frame 03 — Trabalhos</div>
+  <div class="frame-label">Frame 04 — Trabalhos</div>
   <div class="works-head" data-reveal>
     <h2>trabalhos<br>selecionados</h2>
     <p>Projetos de design, pesquisa e tecnologia desenvolvidos ao longo da graduação e das Iniciações Tecnológicas.</p>
@@ -418,7 +490,7 @@
       <div class="wf-info">
         <span class="wf-label">Genius Con 2025</span>
         <h3>AgroCode</h3>
-        <p class="wf-cat">Design de aplicativo · vencedora</p>
+        <p class="wf-cat">Design de aplicativo · 1º LUGAR</p>
       </div>
     </div>
 
@@ -482,7 +554,7 @@
 
 <!-- ================= CONTATO ================= -->
 <section id="contato">
-  <div class="frame-label">Frame 04 — Contato</div>
+  <div class="frame-label">Frame 05 — Contato</div>
   <div data-reveal>
     <h2>vamos criar <span class="swash">junt@s?</span></h2>
     <p>Aberta a projetos novos, parcerias e ideias que ainda nem têm nome. É só chamar.</p>
